@@ -5,106 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Statki
+namespace StatkiTUCK
 {
-    class Ship
-    {
-        private int StartCoordX;
-        private int StartCoordY;
-        private bool[] StateOfFlagpoles;// { get; set; }
-        private bool IsVertical;
-
-        public Ship(int NumberOfFlagpoles, int StartPosX, int StartPosY, bool Vertical)
-        {
-            StartCoordX = StartPosX;
-            StartCoordY = StartPosY;
-
-            StateOfFlagpoles = new bool[NumberOfFlagpoles];
-
-            for (int i = 0; i < NumberOfFlagpoles; i++)
-            {
-                StateOfFlagpoles[i] = true; //is alive
-            }
-
-            IsVertical = Vertical;
-        }
-
-
-
-        public bool HitIt(int HitX, int HitY)
-        {
-            if (IsVertical && HitX == StartCoordX)
-            {
-                if (0 <= (HitY - StartCoordY) && (HitY - StartCoordY) < StateOfFlagpoles.Length)
-                {
-                    StateOfFlagpoles[HitY - StartCoordY] = false;
-                    return true;
-                }
-
-            }
-            else if (!IsVertical && HitY == StartCoordY)
-            {
-                if (0 <= (HitX - StartCoordX) && (HitX - StartCoordX) < StateOfFlagpoles.Length)
-                {
-                    StateOfFlagpoles[HitX - StartCoordX] = false;
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-
-
-
-        public bool HasBeenDestroyed()
-        {
-            for (int i = 0; i < StateOfFlagpoles.Length; i++)
-            {
-                if (StateOfFlagpoles[i]) return false;
-            }
-            return true;
-        }
-    }
-
-
-
-    class Board
-    {
-        private int iSize;
-        private int[,] board;
-        public Board(int x)
-        {
-            iSize = x;
-            board = new int[iSize,iSize];
-            for (int i = 0; i < iSize; i++)
-            {
-                for(int j = 0; j < iSize; j++)
-                { 
-                    board[i, j] = 0;
-                }
-            }
-        }
-        public void DrawBoard(Ship[] AllShipsInGame)
-        {
-            for (int i = 0; i < iSize; i++)
-            {
-                string row = "";
-                for (int j = 0; j < iSize; j++)
-                {
-                    row += board[i, j];
-                }
-                Console.WriteLine(row);
-            }
-        }
-    }
-
-
-    class Statistics
-    {
-
-    }
-
+    
     class Program
     {
         static void Main(string[] args)
@@ -128,23 +31,49 @@ namespace Statki
             //Ship ship = new Ship(3, 4, 5, false); // długość = 3, początek X = 4, początek Y = 5, poziome;
 
 
-            Ship[] ships1 = {
+            /*Ship[] ships1 = {
                 new Ship(3,4,5,false),
                 new Ship(3,2,2,true),
                 new Ship(1,4,2,true),
                 new Ship(5,1,7,false)
-            };
+            };*/
 
             Ship[] ships = new Ship[5];
             
             for (int i = 0; i < ships.Length; i++)
             {
-                int f, x, y;
-                bool vert;
+                Random Generator = new Random();
+                
+                int f = Generator.Next(1, 4);
+                bool vert = Convert.ToBoolean(Generator.Next(0,1));
+                int y = (vert) ? Generator.Next(0, SizeOfBoard - f) : Generator.Next(0, SizeOfBoard);
+                int x = (vert) ? Generator.Next(0, SizeOfBoard) : Generator.Next(0, SizeOfBoard - f);
+
+                for (int j = 0; j < i; j++)
+                {
+                    if (vert)
+                    {
+                        for (int y_temp = y; y_temp < y + f; y_temp++)
+                        {
+                            ships[j].CheckOrHitIt(x, y_temp, true);
+                        }
+                    }
+                    else
+                    {
+                        for (int x_temp = x; x_temp < x + f; x_temp++)
+                        {
+                            ships[j].CheckOrHitIt(x_temp, y, true);
+                        }
+                    }
+                }
+                
+
+                
+
+
                 ships[i] = new Ship(f, x, y, vert);
             }
-            Random lol = new Random();
-            lol.Next();
+            
             bool exit;
 
             do
@@ -159,8 +88,8 @@ namespace Statki
 
                 for (int i = 0; i < ships.Length; i++)
                 {
-                    if (ships[i].HitIt(x, y)) 
-                        Console.WriteLine("Have you hit successfully? {0}", ships[i].HitIt(x, y));
+                    if (ships[i].CheckOrHitIt(x, y)) 
+                        Console.WriteLine("Have you hit successfully? {0}", ships[i].CheckOrHitIt(x, y));
                     Console.WriteLine("Ship nr {0} DESTROYED?: {1};", i, ships[i].HasBeenDestroyed());
 
                     //check if all are destroyed and quit if so
