@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatkiTUCK", "StatkiTUCK.csproj", "{4FA1BE9F-05C3-4AA8-9AFB-E7B6E283FFFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FA1BE9F-05C3-4AA8-9AFB-E7B6E283FFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FA1BE9F-05C3-4AA8-9AFB-E7B6E283FFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FA1BE9F-05C3-4AA8-9AFB-E7B6E283FFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FA1BE9F-05C3-4AA8-9AFB-E7B6E283FFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A10723DE-A775-4233-9ED5-197B863C38DC}
+	EndGlobalSection
+EndGlobal
