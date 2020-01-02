@@ -44,8 +44,8 @@ namespace StatkiTUCK
             {
                 Random Generator = new Random();
                 
-                int f = Generator.Next(1, 4);
-                bool vert = Convert.ToBoolean(Generator.Next(0,1));
+                int f = Generator.Next(1, 5);
+                bool vert = Convert.ToBoolean(Generator.Next(2));
                 int y = (vert) ? Generator.Next(0, SizeOfBoard - f) : Generator.Next(0, SizeOfBoard);
                 int x = (vert) ? Generator.Next(0, SizeOfBoard) : Generator.Next(0, SizeOfBoard - f);
 
@@ -55,6 +55,7 @@ namespace StatkiTUCK
                     {
                         for (int y_temp = y; y_temp < y + f; y_temp++)
                         {
+                            //we still have to do something here
                             ships[j].CheckOrHitIt(x, y_temp, true);
                         }
                     }
@@ -62,6 +63,7 @@ namespace StatkiTUCK
                     {
                         for (int x_temp = x; x_temp < x + f; x_temp++)
                         {
+                            //we still have to do something here
                             ships[j].CheckOrHitIt(x_temp, y, true);
                         }
                     }
