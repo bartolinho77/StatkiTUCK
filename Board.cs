@@ -8,32 +8,48 @@ namespace StatkiTUCK
 {
     class Board
     {
-        private int iSize;
-        private int[,] board;
+        public int Size { get; }
+        public int[,] Map { get; }
+        /*
+        public int Size
+            {
+                get
+                {
+                    return size;
+                }
+            }
+        */
+
         public Board(int x)
         {
-            iSize = x;
-            board = new int[iSize, iSize];
-            for (int i = 0; i < iSize; i++)
+            Size = x;
+            Map = new int[Size, Size];
+            for (int i = 0; i < Size; i++)
             {
-                for (int j = 0; j < iSize; j++)
+                for (int j = 0; j < Size; j++)
                 {
-                    board[i, j] = 0;
+                    Map[i, j] = 0;
                 }
             }
         }
-        public void DrawBoard(Ship[] AllShipsInGame)
+
+      public void UpdateBoard(int x, int y, bool hit)
         {
-            for (int i = 0; i < iSize; i++)
+            Map[x, y] = (hit) ? 4 : 8;
+        }
+
+        /*public void DrawBoard(Ship[] AllShipsInGame)
+        {
+            for (int i = 0; i < size; i++)
             {
                 string row = "";
-                for (int j = 0; j < iSize; j++)
+                for (int j = 0; j < size; j++)
                 {
-                    row += board[i, j];
+                    row += map[i, j];
                 }
                 Console.WriteLine(row);
             }
-        }
+        }*/
     }
 
 }

@@ -13,7 +13,25 @@ namespace StatkiTUCK
             private bool[] StateOfFlagpoles;// { get; set; }
             private bool IsVertical;
 
-            public Ship(int NumberOfFlagpoles, int StartPosX, int StartPosY, bool Vertical)
+        public int X
+        {
+            get { return StartCoordX; }
+        }
+        public int Y
+        {
+            get { return StartCoordY; }
+        }
+        public bool[] Flagpoles
+        {
+            get { return StateOfFlagpoles; }
+        }
+
+        public bool Vert
+        {
+            get { return IsVertical; }
+        }
+
+        public Ship(int NumberOfFlagpoles, int StartPosX, int StartPosY, bool Vertical)
             {
                 StartCoordX = StartPosX;
                 StartCoordY = StartPosY;
