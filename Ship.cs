@@ -8,28 +8,10 @@ namespace StatkiTUCK
 {
         class Ship
         {
-            private int StartCoordX;
-            private int StartCoordY;
-            private bool[] StateOfFlagpoles;// { get; set; }
-            private bool IsVertical;
-
-        public int X
-        {
-            get { return StartCoordX; }
-        }
-        public int Y
-        {
-            get { return StartCoordY; }
-        }
-        public bool[] Flagpoles
-        {
-            get { return StateOfFlagpoles; }
-        }
-
-        public bool Vert
-        {
-            get { return IsVertical; }
-        }
+        private readonly int StartCoordX;
+        private readonly int StartCoordY;
+        private bool[] StateOfFlagpoles;
+        private readonly bool IsVertical;
 
         public Ship(int NumberOfFlagpoles, int StartPosX, int StartPosY, bool Vertical)
             {

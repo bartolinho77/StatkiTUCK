@@ -9,25 +9,22 @@ namespace StatkiTUCK
     class Game
     {
 
-        public Ship[] ships;
-        public Board board;
+        private Ship[] ships;
+        public Board Board{ get; }
+        public Statistics Stats { get; }
 
         public Game(int boardSize, int numberOfShips)
             {
-                board = new Board(boardSize);
+                Board = new Board(boardSize);
+                Stats = new Statistics();
                 PrepareBoard(numberOfShips);
             }
         
-        public bool LetPlayerShoot()
+        public bool LetPlayerShoot(short x, short y)
         {
             bool exit = true;
-            Console.WriteLine("Provide X guess: ");
-            int x = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Provide Y guess: ");
-            int y = Convert.ToInt32(Console.ReadLine());
-
-
+            
             for (int i = 0; i < ships.Length; i++)
             {
                 bool hit = ships[i].CheckOrHitIt(x, y);
@@ -35,7 +32,8 @@ namespace StatkiTUCK
                 if (hit)
                 {
                     Console.WriteLine("Have you hit successfully? {0}", hit);
-                    board.UpdateBoard(x, y, true);
+                    Board.UpdateBoard(x, y, true);
+                    Stats.AddEntry(x, y, true);
                 }
                     
                 Console.WriteLine("Ship nr {0} DESTROYED?: {1};", i, destroyed);
@@ -44,8 +42,11 @@ namespace StatkiTUCK
                 //initially exit = true and if at least one flag pole is still ok, exit becomes false;
                 if (!destroyed) exit = false;
             }
-            if (board.Map[x, y] == 0)
-                board.UpdateBoard(x, y, false);
+            if (Board.Map[x, y] == 0)
+            {
+                Board.UpdateBoard(x, y, false);
+                Stats.AddEntry(x, y, false);
+            }
             return exit;
         }
         
@@ -65,8 +66,8 @@ namespace StatkiTUCK
                     ship_exists = false;
                     f = Generator.Next(1, 5);
                     vert = Convert.ToBoolean(Generator.Next(2));
-                    y = (vert) ? Generator.Next(0, board.Size - f) : Generator.Next(0, board.Size);
-                    x = (vert) ? Generator.Next(0, board.Size) : Generator.Next(0, board.Size - f);
+                    y = (vert) ? Generator.Next(0, Board.Size - f) : Generator.Next(0, Board.Size);
+                    x = (vert) ? Generator.Next(0, Board.Size) : Generator.Next(0, Board.Size - f);
                     for (int j = 0; j < i; j++)
                     {
                         if (vert)

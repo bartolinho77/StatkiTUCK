@@ -35,21 +35,9 @@ namespace StatkiTUCK
 
       public void UpdateBoard(int x, int y, bool hit)
         {
-            Map[x, y] = (hit) ? 4 : 8;
+            Map[x, y] = (hit) ? 1 : 7;
         }
 
-        /*public void DrawBoard(Ship[] AllShipsInGame)
-        {
-            for (int i = 0; i < size; i++)
-            {
-                string row = "";
-                for (int j = 0; j < size; j++)
-                {
-                    row += map[i, j];
-                }
-                Console.WriteLine(row);
-            }
-        }*/
     }
 
 }
