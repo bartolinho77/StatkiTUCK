@@ -34,7 +34,6 @@ namespace StatkiTUCK
             int NumberOfShips = Convert.ToInt32(Console.ReadLine());
 
             Game NewGame = new Game(BoardSize, NumberOfShips);
-            bool exit;
 
             do
             {
@@ -51,9 +50,9 @@ namespace StatkiTUCK
                         Console.WriteLine("You've already guessed this pair!");
                 } while (duplicate);
 
-                exit = NewGame.LetPlayerShoot(x, y);
+                NewGame.LetPlayerShoot(x, y);
 
-            } while (!exit);
+            } while (NewGame.IsGameRunning());
 
             Console.WriteLine("Congratulations! You've won!");
             Console.WriteLine("You needed {0} movements to sink all the ships! Well done.", NewGame.Stats.History.Rows.Count);
