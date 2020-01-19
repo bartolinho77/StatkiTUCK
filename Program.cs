@@ -34,24 +34,22 @@ namespace StatkiTUCK
             int NumberOfShips = Convert.ToInt32(Console.ReadLine());
 
             Game NewGame = new Game(BoardSize, NumberOfShips);
-
+            Controller.Draw(NewGame.Board);
             do
             {
                 short x, y;
-                bool duplicate;
-
-                Controller.Draw(NewGame.Board);
+                bool isDuplicate;
 
                 do
                 {
                     Controller.GetUserInput(out x, out y, BoardSize);
-                    duplicate = NewGame.Stats.AlreadyExists(x, y);
-                    if (duplicate)
+                    isDuplicate = NewGame.Stats.AlreadyExists(x, y);
+                    if (isDuplicate)
                         Console.WriteLine("You've already guessed this pair!");
-                } while (duplicate);
+                } while (isDuplicate);
 
                 NewGame.LetPlayerShoot(x, y);
-
+                Controller.Draw(NewGame.Board);
             } while (NewGame.IsGameRunning());
 
             Console.WriteLine("Congratulations! You've won!");

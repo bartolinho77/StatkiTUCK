@@ -10,16 +10,7 @@ namespace StatkiTUCK
     {
         public int Size { get; }
         public int[,] Map { get; }
-        /*
-        public int Size
-            {
-                get
-                {
-                    return size;
-                }
-            }
-        */
-
+        
         public Board(int x)
         {
             Size = x;
