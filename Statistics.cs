@@ -2,7 +2,7 @@
 
 namespace StatkiTUCK
 {
-    class Statistics
+    public class Statistics
     {
         public DataTable History { get; }
 

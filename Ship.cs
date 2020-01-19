@@ -1,7 +1,7 @@
 ﻿
 namespace StatkiTUCK
 {
-        class Ship
+        public class Ship
         {
         private readonly int StartCoordX;
         private readonly int StartCoordY;

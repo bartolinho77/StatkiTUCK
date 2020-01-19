@@ -3,7 +3,7 @@
 
 namespace StatkiTUCK
 {
-    class Controller
+    public class Controller
     {
         public static void Draw(Board board)
             {

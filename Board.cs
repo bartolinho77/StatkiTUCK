@@ -3,7 +3,7 @@
 
 namespace StatkiTUCK
 {
-    class Board
+    public class Board
     {
         public int Size { get; }
         public int[,] Map { get; }

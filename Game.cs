@@ -2,7 +2,7 @@
 
 namespace StatkiTUCK
 {
-    class Game
+    public class Game
     {
 
         private Ship[] ships;
