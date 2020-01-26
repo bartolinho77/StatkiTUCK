@@ -3,12 +3,12 @@ namespace StatkiTUCK
 {
         public class Ship
         {
-        private readonly int StartCoordX;
-        private readonly int StartCoordY;
-        private bool[] StateOfFlagpoles;
-        private readonly bool IsVertical;
+            private readonly int StartCoordX;
+            private readonly int StartCoordY;
+            private bool[] StateOfFlagpoles;
+            private readonly bool IsVertical;
 
-        public Ship(int NumberOfFlagpoles, int StartPosX, int StartPosY, bool Vertical)
+            public Ship(int NumberOfFlagpoles, int StartPosX, int StartPosY, bool Vertical)
             {
                 StartCoordX = StartPosX;
                 StartCoordY = StartPosY;
@@ -23,7 +23,22 @@ namespace StatkiTUCK
                 IsVertical = Vertical;
             }
 
-
+            public int NumberOfFlagpoles
+            {
+                get { return StateOfFlagpoles.Length; }
+            }
+            public int[] StartingPoint
+            {
+                get {
+                int[] temp = new int[2];
+                temp[0] = StartCoordX;
+                temp[1] = StartCoordY;
+                return temp; }
+            }
+            public bool IsShipVertical
+            {
+                get {return IsVertical; }
+            }
 
             public bool CheckOrHitIt(int HitX, int HitY, bool checkIfExistsOnly = false)
             {
